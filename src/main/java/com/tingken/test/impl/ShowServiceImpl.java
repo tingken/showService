@@ -13,7 +13,7 @@ import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 import com.tingken.test.api.AuthResult;
 import com.tingken.test.api.ServerCommand;
 import com.tingken.test.api.ShowService;
-import com.tingken.test.api.ShowServiceException;
+import com.tingken.test.exception.ShowServiceException;
 
 /**
  * @author Administrator

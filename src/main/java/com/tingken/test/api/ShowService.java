@@ -24,6 +24,8 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 
+import com.tingken.test.exception.ShowServiceException;
+
 
 /**
  * Interface for Oneapi send MMS.

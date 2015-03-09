@@ -35,12 +35,13 @@
         <jaxrs:serviceBeans>
             <ref bean="showService" />
         </jaxrs:serviceBeans>
-        <!-- <jaxrs:providers>
-            <ref bean="jsonProvider" />
+        <jaxrs:providers>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
+            <!-- <ref bean="jsonProvider" />
             <bean class="com.ericsson.ece.exposure.access.common.oneapi.ServiceFailureExceptionMapper">
                 <property name="logger" ref="accessLogger" />
-            </bean>
-        </jaxrs:providers> -->
+            </bean> -->
+        </jaxrs:providers>
     </jaxrs:server>
     <!-- 
     <bean id="jsonProvider" class="com.ericsson.ece.exposure.access.common.oneapi.JsonProviderFactory" />

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.tingken.test.api;
+package com.tingken.test.exception;
 
 /**
  * @author Administrator
