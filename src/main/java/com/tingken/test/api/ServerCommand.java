@@ -9,7 +9,14 @@ package com.tingken.test.api;
  */
 public class ServerCommand {
 	public static enum CommandHead{
-		SCREEN_CAPTURE, RESTART, UPGRADE, None
+		SCREEN_CAPTURE("screen-capture"), RESTART("restart"), UPGRADE("upgrade");
+		String command;
+		CommandHead(String command){
+			this.command = command;
+		}
+		public String toString(){
+			return command;
+		}
 	}
 	
 	private CommandHead commandHead;

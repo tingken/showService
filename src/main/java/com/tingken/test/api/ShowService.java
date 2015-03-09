@@ -54,19 +54,19 @@ public interface ShowService {
     @Path("/uploadCapture")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    Response uploadCapture(@PathParam("senderAddress")
+    Response uploadCapture(@PathParam("regNum")
     String authCode, MultipartBody body) throws ShowServiceException;
     
 
     @GET
     @Path("/authenticate")
     @Produces(MediaType.APPLICATION_JSON)
-    Response authenticate(@QueryParam("authCode")String authCode, @QueryParam("dimension")String dimension) throws ShowServiceException;
+    Response authenticate(@QueryParam("regNum")String authCode, @QueryParam("dimension")String dimension) throws ShowServiceException;
 
     @GET
     @Path("/heartBeat")
     @Produces(MediaType.APPLICATION_JSON)
-	ServerCommand heartBeat(String authCode);
+	ServerCommand heartBeat(@QueryParam("regNum")String authCode);
 
 	boolean uploadScreen(String authCode, Date captureTime, File capture);
 }

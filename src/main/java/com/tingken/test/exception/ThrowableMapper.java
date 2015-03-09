@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 public class ThrowableMapper implements ExceptionMapper<Throwable> {
 
 
-    @Override
     public Response toResponse(Throwable e) {
 
 //        OAuthError error = new OAuthError(OAuthErrorCode.server_error,
