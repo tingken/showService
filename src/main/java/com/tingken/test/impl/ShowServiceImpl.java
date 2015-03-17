@@ -24,6 +24,7 @@ import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 import com.tingken.test.api.AuthResult;
 import com.tingken.test.api.ServerCommand;
 import com.tingken.test.api.ShowService;
+import com.tingken.test.api.VersionInfo;
 import com.tingken.test.exception.ShowServiceException;
 
 /**
@@ -41,7 +42,7 @@ public class ShowServiceImpl implements ShowService {
 	/* (non-Javadoc)
 	 * @see com.tingken.test.api.ShowService#uploadCapture(java.lang.String, org.apache.cxf.jaxrs.ext.multipart.MultipartBody)
 	 */
-	public Response uploadCapture(String senderAddress, MultipartBody body)
+	public Response uploadCapture(String deviceId, MultipartBody body)
 			throws ShowServiceException {
 		Attachment root = body.getAttachment(ROOT_FIELDS);
 		body.getAttachment("attachments");
@@ -62,7 +63,7 @@ public class ShowServiceImpl implements ShowService {
 		return Response.ok().build();
 	}
 
-	public Response authenticate(String authCode, String dimension)
+	public Response authenticate(String authCode, String deviceId, String dimension)
 			throws ShowServiceException {
 		AuthResult result = new AuthResult();
 		result.setAuthSuccess(true);
@@ -70,7 +71,7 @@ public class ShowServiceImpl implements ShowService {
 		return Response.ok(result).build();
 	}
 
-	public ServerCommand heartBeat(String authCode) {
+	public ServerCommand heartBeat(String deviceId) {
 		ServerCommand command = new ServerCommand();
 		command.setCommandHead(ServerCommand.CommandHead.RESTART);
 		return command;
@@ -161,5 +162,13 @@ public class ShowServiceImpl implements ShowService {
 
         return mbp;
     }
+
+	public VersionInfo getLatestVersion() {
+		VersionInfo version = new VersionInfo();
+		version.setVersionCode(2);
+		version.setVersionName("1.0.2");
+		version.setDownloadAddress("http://localhost:8080/manager/InfoShower.apk");
+		return version;
+	}
 
 }

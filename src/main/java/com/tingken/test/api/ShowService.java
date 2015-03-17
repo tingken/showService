@@ -54,19 +54,27 @@ public interface ShowService {
     @Path("/uploadCapture")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
-    Response uploadCapture(@PathParam("regNum")
-    String authCode, MultipartBody body) throws ShowServiceException;
+    Response uploadCapture(@PathParam("deviceId")
+    String deviceId, MultipartBody body) throws ShowServiceException;
     
 
     @GET
     @Path("/authenticate")
     @Produces(MediaType.APPLICATION_JSON)
-    Response authenticate(@QueryParam("regNum")String authCode, @QueryParam("dimension")String dimension) throws ShowServiceException;
+	Response authenticate(@QueryParam("regNum") String authCode,
+			@QueryParam("deviceId") String deviceId,
+			@QueryParam("dimension") String dimension)
+			throws ShowServiceException;
 
     @GET
     @Path("/heartBeat")
     @Produces(MediaType.APPLICATION_JSON)
-	ServerCommand heartBeat(@QueryParam("regNum")String authCode);
+    ServerCommand heartBeat(@QueryParam("deviceId")String deviceId);
+
+    @GET
+    @Path("/latestVersion")
+    @Produces(MediaType.APPLICATION_JSON)
+    VersionInfo getLatestVersion();
 
 	boolean uploadScreen(String authCode, Date captureTime, File capture);
 }
