@@ -9,7 +9,7 @@ package com.tingken.test.api;
  */
 public class ServerCommand {
 	public static enum CommandHead{
-		SCREEN_CAPTURE("screen-capture"), RESTART("restart"), UPGRADE("upgrade");
+		SCREEN_CAPTURE("screen-capture"), RESTART("restart"), UPGRADE("upgrade"), NONE("none");
 		String command;
 		CommandHead(String command){
 			this.command = command;
@@ -19,20 +19,20 @@ public class ServerCommand {
 		}
 	}
 	
-	private CommandHead commandHead;
+	private CommandHead command;
 	private String relative;
 
 	/**
 	 * @return the commandHead
 	 */
-	public CommandHead getCommandHead() {
-		return commandHead;
+	public CommandHead getCommand() {
+		return command;
 	}
 	/**
 	 * @param commandHead the commandHead to set
 	 */
-	public void setCommandHead(CommandHead commandHead) {
-		this.commandHead = commandHead;
+	public void setCommand(CommandHead commandHead) {
+		this.command = commandHead;
 	}
 	/**
 	 * @return the relative

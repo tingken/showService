@@ -38,6 +38,8 @@ public class ShowServiceImpl implements ShowService {
     private static final String CONTENT_TYPE = "content-type";
     private static final String CXF_CONTENT_TYPE = "Content-Type";
     private static final String CXF_CONTENT_TRANSFER_ENCODING = "Content-Transfer-Encoding";
+    
+    private static int accessTime = 0;
 
 	/* (non-Javadoc)
 	 * @see com.tingken.test.api.ShowService#uploadCapture(java.lang.String, org.apache.cxf.jaxrs.ext.multipart.MultipartBody)
@@ -66,14 +68,25 @@ public class ShowServiceImpl implements ShowService {
 	public Response authenticate(String authCode, String deviceId, String dimension)
 			throws ShowServiceException {
 		AuthResult result = new AuthResult();
-		result.setAuthSuccess(true);
+		result.setLoginId(authCode);
 		result.setShowPageAddress("www.sohu.com");
 		return Response.ok(result).build();
 	}
 
-	public ServerCommand heartBeat(String deviceId) {
+	public ServerCommand heartBeat(String loginId) {
 		ServerCommand command = new ServerCommand();
-		command.setCommandHead(ServerCommand.CommandHead.RESTART);
+		command.setCommand(ServerCommand.CommandHead.NONE);
+		if (++accessTime % 5 == 0) {
+			if ("11111".equals(loginId)) {
+				command.setCommand(ServerCommand.CommandHead.UPGRADE);
+			} else if ("22222".equals(loginId)) {
+				command.setCommand(ServerCommand.CommandHead.SCREEN_CAPTURE);
+			} else if ("33333".equals(loginId)) {
+				throw new RuntimeException("exception");
+			} else if ("4444".equals(loginId)) {
+				command.setCommand(ServerCommand.CommandHead.RESTART);
+			}
+		}
 		return command;
 	}
 
@@ -167,7 +180,7 @@ public class ShowServiceImpl implements ShowService {
 		VersionInfo version = new VersionInfo();
 		version.setVersionCode(2);
 		version.setVersionName("1.0.2");
-		version.setDownloadAddress("http://localhost:8080/manager/InfoShower.apk");
+		version.setDownloadAddress("http://192.168.2.8:8080/manager/InfoShower.apk");
 		return version;
 	}
 

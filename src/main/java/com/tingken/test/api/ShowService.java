@@ -69,7 +69,7 @@ public interface ShowService {
     @GET
     @Path("/heartBeat")
     @Produces(MediaType.APPLICATION_JSON)
-    ServerCommand heartBeat(@QueryParam("deviceId")String deviceId);
+    ServerCommand heartBeat(@QueryParam("loginId")String loginId);
 
     @GET
     @Path("/latestVersion")
